@@ -5,55 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promposal</title>
     <style>
-        /* General Styling */
+        /* Starry Night Background */
         body {
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            background-color: #121212;
-            color: white;
             margin: 0;
             padding: 0;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?stars,night') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
         }
 
-        /* Glitchy Animated Title */
+        /* Smooth Text Styling */
         h1 {
-            font-size: 3rem;
-            position: relative;
-            text-transform: uppercase;
-            color: #0ff;
-            animation: glitch 1.5s infinite;
-        }
-
-        @keyframes glitch {
-            0% { text-shadow: 4px 4px 0 #f00, -4px -4px 0 #0ff; }
-            50% { text-shadow: -4px -4px 0 #f00, 4px 4px 0 #0ff; }
-            100% { text-shadow: 4px -4px 0 #f00, -4px 4px 0 #0ff; }
+            font-size: 2.5rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
         }
 
         /* Button Styling */
-        .buttons {
-            margin-top: 20px;
-        }
-
-        button {
+        .btn {
             font-size: 1.2rem;
             padding: 12px 25px;
             border: none;
             cursor: pointer;
             border-radius: 8px;
-            transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
             font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
         }
 
         .yes {
             background: #0ff;
-            color: #121212;
+            color: black;
             box-shadow: 0px 0px 10px #0ff;
         }
 
@@ -62,112 +51,10 @@
             box-shadow: 0px 0px 20px #00d4ff;
             transform: scale(1.1);
         }
-
-        .no {
-            background: #ff0044;
-            color: white;
-            position: absolute;
-        }
-
-        .no:hover {
-            transform: translateX(calc(100px - 200px * random()));
-        }
-
-        /* Hidden Message */
-        .hidden-message {
-            display: none;
-            font-size: 2rem;
-            color: #0ff;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        /* Confetti */
-        .confetti {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            display: none;
-        }
     </style>
 </head>
 <body>
-    <h1>Yo, wanna go to prom? 😎</h1>
-    
-    <div class="buttons">
-        <button class="yes" onclick="showMessage()">HELL YEAH! 🎉</button>
-        <button class="no" onmouseover="runAway()">Nah... 😏</button>
-    </div>
-
-    <div class="hidden-message">Let's gooo! 🚀 See you at prom! 🎊</div>
-    
-    <canvas class="confetti"></canvas>
-
-    <script>
-        function showMessage() {
-            document.querySelector(".hidden-message").style.display = "block";
-            startConfetti();
-        }
-
-        function runAway() {
-            let btn = document.querySelector('.no');
-            let x = Math.random() * (window.innerWidth - 100);
-            let y = Math.random() * (window.innerHeight - 50);
-            btn.style.left = `${x}px`;
-            btn.style.top = `${y}px`;
-        }
-
-        // Confetti Animation
-        const canvas = document.querySelector('.confetti');
-        const ctx = canvas.getContext('2d');
-        let pieces = [], 
-            numberOfPieces = 100,
-            w = window.innerWidth,
-            h = window.innerHeight;
-
-        canvas.width = w;
-        canvas.height = h;
-
-        function ConfettiPiece() {
-            this.x = Math.random() * w;
-            this.y = Math.random() * h - h;
-            this.size = Math.random() * 10 + 5;
-            this.speed = Math.random() * 3 + 2;
-            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        }
-
-        ConfettiPiece.prototype.update = function() {
-            this.y += this.speed;
-            if (this.y > h) {
-                this.y = -10;
-                this.x = Math.random() * w;
-            }
-        };
-
-        ConfettiPiece.prototype.draw = function() {
-            ctx.fillStyle = this.color;
-            ctx.fillRect(this.x, this.y, this.size, this.size);
-        };
-
-        function startConfetti() {
-            document.querySelector('.confetti').style.display = 'block';
-            for (let i = 0; i < numberOfPieces; i++) {
-                pieces.push(new ConfettiPiece());
-            }
-            animateConfetti();
-        }
-
-        function animateConfetti() {
-            ctx.clearRect(0, 0, w, h);
-            pieces.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateConfetti);
-        }
-    </script>
+    <h1>The stars are the 2nd most beautiful thing on prom night... <br> Can I take the first? ✨</h1>
+    <button class="btn yes" onclick="alert('Let’s gooo! 🥳')">Yes! 💙</button>
 </body>
 </html>
