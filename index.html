@@ -1,21 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promposal</title>
     <style>
-        body { 
-            text-align: center; 
-            font-family: Arial, sans-serif; 
-            margin-top: 100px; 
-            background-color: #fce4ec; 
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebf0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
-        h1 { 
-            font-size: 3em; 
-            color: #ff4081; 
+        h1 {
+            font-size: 3rem;
+            color: #ff4081;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff4081; }
+            to { text-shadow: 0 0 20px #ff1053; }
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.2s, background 0.3s;
+        }
+        .yes {
+            background: #ff4081;
+            color: white;
+        }
+        .yes:hover {
+            background: #e6005c;
+            transform: scale(1.1);
+        }
+        .no {
+            background: #ccc;
+            color: black;
+        }
+        .no:hover {
+            background: #888;
+            transform: scale(1.1);
+        }
+        .hidden-message {
+            display: none;
+            font-size: 2rem;
+            color: #ff4081;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            display: none;
         }
     </style>
 </head>
 <body>
     <h1>Will you go to prom with me? ❤️</h1>
+    
+    <div class="buttons">
+        <button class="yes" onclick="showMessage()">YES! 🎉</button>
+        <button class="no" onclick="alert('Oh no! Try again 😜')">No 😢</button>
+    </div>
+
+    <div class="hidden-message">YAY! See you at prom! 🎊🎈</div>
+    
+    <canvas class="confetti"></canvas>
+
+    <script>
+        function showMessage() {
+            document.querySelector(".hidden-message").style.display = "block";
+            startConfetti();
+        }
+
+        // Confetti Animation
+        const canvas = document.querySelector('.confetti');
+        const ctx = canvas.getContext('2d');
+        let pieces = [], 
+            numberOfPieces = 100,
+            w = window.innerWidth,
+            h = window.innerHeight;
+
+        canvas.width = w;
+        canvas.height = h;
+
+        function ConfettiPiece() {
+            this.x = Math.random() * w;
+            this.y = Math.random() * h - h;
+            this.size = Math.random() * 10 + 5;
+            this.speed = Math.random() * 3 + 2;
+            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+
+        ConfettiPiece.prototype.update = function() {
+            this.y += this.speed;
+            if (this.y > h) {
+                this.y = -10;
+                this.x = Math.random() * w;
+            }
+        };
+
+        ConfettiPiece.prototype.draw = function() {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.size, this.size);
+        };
+
+        function startConfetti() {
+            document.querySelector('.confetti').style.display = 'block';
+            for (let i = 0; i < numberOfPieces; i++) {
+                pieces.push(new ConfettiPiece());
+            }
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, w, h);
+            pieces.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateConfetti);
+        }
+    </script>
 </body>
 </html>
