@@ -51,10 +51,33 @@
             box-shadow: 0px 0px 20px #00d4ff;
             transform: scale(1.1);
         }
+
+        .no {
+            background: #ff0044;
+            color: white;
+            transition: 0.3s;
+        }
     </style>
 </head>
 <body>
     <h1>The stars are the 2nd most beautiful thing on prom night... <br> Can I take the first? ✨</h1>
+    
     <button class="btn yes" onclick="alert('Let’s gooo! 🥳')">Yes! 💙</button>
+    <button class="btn no" onclick="shrinkNo()" id="noBtn">No... 😬</button>
+
+    <script>
+        function shrinkNo() {
+            let noBtn = document.getElementById("noBtn");
+            let currentSize = window.getComputedStyle(noBtn).fontSize;
+            let newSize = parseFloat(currentSize) * 0.8; // Shrink by 20%
+
+            if (newSize < 5) {
+                noBtn.style.display = "none"; // Hide it when too small
+            } else {
+                noBtn.style.fontSize = newSize + "px";
+                noBtn.style.padding = (newSize / 3) + "px " + (newSize / 2) + "px";
+            }
+        }
+    </script>
 </body>
 </html>
