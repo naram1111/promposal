@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promposal</title>
     <style>
+        /* General Styling */
         body {
             text-align: center;
-            font-family: 'Arial', sans-serif;
-            background-color: #ffebf0;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: white;
             margin: 0;
             padding: 0;
             display: flex;
@@ -19,49 +20,69 @@
             height: 100vh;
             overflow: hidden;
         }
+
+        /* Glitchy Animated Title */
         h1 {
             font-size: 3rem;
-            color: #ff4081;
-            animation: glow 1.5s infinite alternate;
+            position: relative;
+            text-transform: uppercase;
+            color: #0ff;
+            animation: glitch 1.5s infinite;
         }
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #ff4081; }
-            to { text-shadow: 0 0 20px #ff1053; }
+
+        @keyframes glitch {
+            0% { text-shadow: 4px 4px 0 #f00, -4px -4px 0 #0ff; }
+            50% { text-shadow: -4px -4px 0 #f00, 4px 4px 0 #0ff; }
+            100% { text-shadow: 4px -4px 0 #f00, -4px 4px 0 #0ff; }
         }
+
+        /* Button Styling */
         .buttons {
             margin-top: 20px;
         }
+
         button {
             font-size: 1.2rem;
             padding: 12px 25px;
             border: none;
             cursor: pointer;
-            border-radius: 10px;
-            transition: transform 0.2s, background 0.3s;
+            border-radius: 8px;
+            transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+            font-weight: bold;
         }
+
         .yes {
-            background: #ff4081;
-            color: white;
+            background: #0ff;
+            color: #121212;
+            box-shadow: 0px 0px 10px #0ff;
         }
+
         .yes:hover {
-            background: #e6005c;
+            background: #00d4ff;
+            box-shadow: 0px 0px 20px #00d4ff;
             transform: scale(1.1);
         }
+
         .no {
-            background: #ccc;
-            color: black;
+            background: #ff0044;
+            color: white;
+            position: absolute;
         }
+
         .no:hover {
-            background: #888;
-            transform: scale(1.1);
+            transform: translateX(calc(100px - 200px * random()));
         }
+
+        /* Hidden Message */
         .hidden-message {
             display: none;
             font-size: 2rem;
-            color: #ff4081;
+            color: #0ff;
             margin-top: 20px;
             font-weight: bold;
         }
+
+        /* Confetti */
         .confetti {
             position: fixed;
             width: 100%;
@@ -74,14 +95,14 @@
     </style>
 </head>
 <body>
-    <h1>Will you go to prom with me? ❤️</h1>
+    <h1>Yo, wanna go to prom? 😎</h1>
     
     <div class="buttons">
-        <button class="yes" onclick="showMessage()">YES! 🎉</button>
-        <button class="no" onclick="alert('Oh no! Try again 😜')">No 😢</button>
+        <button class="yes" onclick="showMessage()">HELL YEAH! 🎉</button>
+        <button class="no" onmouseover="runAway()">Nah... 😏</button>
     </div>
 
-    <div class="hidden-message">YAY! See you at prom! 🎊🎈</div>
+    <div class="hidden-message">Let's gooo! 🚀 See you at prom! 🎊</div>
     
     <canvas class="confetti"></canvas>
 
@@ -89,6 +110,14 @@
         function showMessage() {
             document.querySelector(".hidden-message").style.display = "block";
             startConfetti();
+        }
+
+        function runAway() {
+            let btn = document.querySelector('.no');
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            btn.style.left = `${x}px`;
+            btn.style.top = `${y}px`;
         }
 
         // Confetti Animation
