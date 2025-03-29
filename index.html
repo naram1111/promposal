@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promposal</title>
     <style>
-        /* Starry Night Background */
+        /* Custom Background */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
             text-align: center;
-            background: url('https://source.unsplash.com/1600x900/?stars,night') no-repeat center center/cover;
+            background: url('https://your-image-link-here.jpg') no-repeat center center/cover;
             color: white;
             height: 100vh;
             display: flex;
@@ -20,64 +19,20 @@
             align-items: center;
         }
 
-        /* Smooth Text Styling */
+        /* Royal & Stylish Font */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap');
+
         h1 {
-            font-size: 2.5rem;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 15px;
-            border-radius: 10px;
-        }
-
-        /* Button Styling */
-        .btn {
-            font-size: 1.2rem;
-            padding: 12px 25px;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .yes {
-            background: #0ff;
-            color: black;
-            box-shadow: 0px 0px 10px #0ff;
-        }
-
-        .yes:hover {
-            background: #00d4ff;
-            box-shadow: 0px 0px 20px #00d4ff;
-            transform: scale(1.1);
-        }
-
-        .no {
-            background: #ff0044;
-            color: white;
-            transition: 0.3s;
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
         }
     </style>
 </head>
 <body>
     <h1>The stars are the 2nd most beautiful thing on prom night... <br> Can I take the first? ✨</h1>
-    
-    <button class="btn yes" onclick="alert('Let’s gooo! 🥳')">Yes! ❤️</button>
-    <button class="btn no" onclick="shrinkNo()" id="noBtn">No... 😬</button>
-
-    <script>
-        function shrinkNo() {
-            let noBtn = document.getElementById("noBtn");
-            let currentSize = window.getComputedStyle(noBtn).fontSize;
-            let newSize = parseFloat(currentSize) * 0.8; // Shrink by 20%
-
-            if (newSize < 5) {
-                noBtn.style.display = "none"; // Hide it when too small
-            } else {
-                noBtn.style.fontSize = newSize + "px";
-                noBtn.style.padding = (newSize / 3) + "px " + (newSize / 2) + "px";
-            }
-        }
-    </script>
 </body>
 </html>
