@@ -18,6 +18,19 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+        }
+
+        /* Dark Overlay (10% Darker) */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1); /* 10% darker */
+            z-index: 1;
         }
 
         /* Royal & Stylish Font */
@@ -29,6 +42,8 @@
             text-shadow: 4px 4px 15px rgba(255, 255, 255, 0.8); /* Soft glow effect */
             padding: 20px;
             border-radius: 15px;
+            position: relative;
+            z-index: 2; /* Keeps text above the overlay */
         }
     </style>
 </head>
