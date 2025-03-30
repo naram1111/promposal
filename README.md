@@ -1,2 +1,2 @@
-# Sabine
-promposal
+# promoosal
+.cup
