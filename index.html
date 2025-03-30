@@ -21,7 +21,7 @@
             position: relative;
         }
 
-        /* Dark Overlay (10% Darker) */
+        /* Dark Overlay (Slightly Darker) */
         body::before {
             content: "";
             position: absolute;
@@ -29,27 +29,28 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.1); /* 10% darker */
+            background: rgba(0, 0, 0, 0.2); /* 20% darker */
             z-index: 1;
         }
 
-        /* Royal & Stylish Font */
+        /* Stylish Font */
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap');
 
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            text-shadow: 4px 4px 15px rgba(255, 255, 255, 0.8); /* Soft glow effect */
-            padding: 20px;
+            font-size: 3.2rem; /* Slightly smaller */
+            text-shadow: 3px 3px 12px rgba(255, 255, 255, 0.7); /* Adjusted glow */
+            padding: 15px;
             position: relative;
             z-index: 2;
+            max-width: 90%; /* Prevents overflow */
         }
 
         /* Button Styles */
         .btn {
-            font-size: 1.5rem;
-            padding: 10px 20px;
-            margin: 10px;
+            font-size: 1.3rem; /* Slightly smaller */
+            padding: 8px 18px;
+            margin: 5px;
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -67,6 +68,13 @@
             background-color: #E74C3C;
             color: white;
         }
+
+        /* Button Container (Keeps it centered) */
+        #buttons {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -78,20 +86,21 @@
     </div>
 
     <script>
-        let noSize = 1.5; // Initial button size
+        let noSize = 1.3; // Initial button size
+        let noClicks = 0; // Track number of times No is pressed
 
         function shrinkNo(button) {
-            noSize -= 0.2; // Shrink size
-            if (noSize <= 0.2) {
-                button.innerText = "💀";
-                button.disabled = true;
+            noClicks++;
+            if (noClicks >= 5) {
+                button.style.display = "none"; // Hide button after 5 presses
             } else {
+                noSize -= 0.2; // Shrink size
                 button.style.transform = `scale(${noSize})`;
             }
         }
 
         function sayYes() {
-            document.getElementById("question").innerText = "See you at prom! 💖";
+            document.getElementById("question").innerText = "See you at prom! ✨";
             document.getElementById("buttons").style.display = "none"; // Hide buttons
         }
     </script>
