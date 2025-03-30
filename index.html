@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            background: url('https://raw.githubusercontent.com/naram1111/Sabine/main/Screenshot_20250329-123809_3.jpg') no-repeat center center fixed;
+            background: url('https://raw.githubusercontent.com/naram1111/Sabine/main/Screenshot_20250329-130856_1.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             height: 100vh;
@@ -41,13 +41,59 @@
             font-size: 4rem;
             text-shadow: 4px 4px 15px rgba(255, 255, 255, 0.8); /* Soft glow effect */
             padding: 20px;
-            border-radius: 15px;
             position: relative;
-            z-index: 2; /* Keeps text above the overlay */
+            z-index: 2;
+        }
+
+        /* Button Styles */
+        .btn {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            border-radius: 10px;
+        }
+
+        .yes-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #E74C3C;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>The stars are the 2nd most beautiful thing on prom night... <br> Can I take the first? ✨</h1>
+    <h1 id="question">The stars are the 2nd most beautiful thing on prom night... <br> Can I take the first? ✨</h1>
+
+    <div id="buttons">
+        <button class="btn yes-btn" onclick="sayYes()">Yes</button>
+        <button class="btn no-btn" onclick="shrinkNo(this)">No</button>
+    </div>
+
+    <script>
+        let noSize = 1.5; // Initial button size
+
+        function shrinkNo(button) {
+            noSize -= 0.2; // Shrink size
+            if (noSize <= 0.2) {
+                button.innerText = "💀";
+                button.disabled = true;
+            } else {
+                button.style.transform = `scale(${noSize})`;
+            }
+        }
+
+        function sayYes() {
+            document.getElementById("question").innerText = "See you at prom! 💖";
+            document.getElementById("buttons").style.display = "none"; // Hide buttons
+        }
+    </script>
 </body>
 </html>
