@@ -1,111 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promposal</title>
-    <style>
-        /* Full-Screen Background */
-        body {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background: url('https://raw.githubusercontent.com/naram1111/Sabine/main/Screenshot_20250329-130856_1.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sorry, We Love You</title>
+  <style>
+    body {
+      background-color: #ffe6e6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 50px;
+      color: #b30000;
+    }
 
-        /* Dark Overlay */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
 
-        /* Stylish Font */
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap');
+    .heart {
+      font-size: 100px;
+      color: #ff3366;
+      animation: heartbeat 1s infinite;
+    }
 
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            text-shadow: 3px 3px 12px rgba(255, 255, 255, 0.7);
-            padding: 15px;
-            position: relative;
-            z-index: 2;
-            max-width: 90%;
-        }
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
 
-        /* Button Styles */
-        .btn {
-            font-size: 1.3rem;
-            padding: 8px 18px;
-            margin: 5px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-            border-radius: 10px;
-        }
-
-        .yes-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .no-btn {
-            background-color: #E74C3C;
-            color: white;
-            transform: scale(1); /* Ensures it starts at 1 */
-        }
-
-        /* Button Container */
-        #buttons {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-        }
-    </style>
+    p {
+      font-size: 1.5em;
+      color: #990000;
+    }
+  </style>
 </head>
 <body>
-    <h1 id="question">The stars are the 2nd most beautiful thing on prom night... <br> Can I take the first? ✨</h1>
-
-    <div id="buttons">
-        <button class="btn yes-btn" onclick="sayYes()">Yes</button>
-        <button class="btn no-btn" id="noBtn" onclick="shrinkNo()">No</button>
-    </div>
-
-    <script>
-        let noSize = 1; // Fixed start size
-        let noClicks = 0;
-
-        function shrinkNo() {
-            let button = document.getElementById("noBtn");
-            noClicks++;
-
-            if (noClicks >= 5) {
-                button.style.display = "none"; // Disappear after 5 clicks
-            } else {
-                noSize -= 0.2;
-                button.style.transform = `scale(${noSize})`;
-            }
-        }
-
-        function sayYes() {
-            document.getElementById("question").innerText = "See you at prom! ✨";
-            document.getElementById("buttons").style.display = "none"; // Hide buttons
-        }
-    </script>
+  <div class="heart">♥</div>
+  <h1>Sorry</h1>
+  <p>We love you more than words can say.</p>
 </body>
 </html>
